@@ -3,7 +3,7 @@
 ### Purpose
 This project aims to refactor the original VBA script which is used in the analysis of the sample stock dataset, such that the code will be able to run an analysis over a large-scale dataset in a fast and efficient manner. As Steve plans to expand his research to the entire stock market, the refactored VBA code, which execute an analysis faster, will allow Steve to analyze the performance of the stocks without having to go through the dataset manually, and help his parents diversify their future investment wisely.
 
-### Overview of Stock dataset
+### Background of Stock dataset
 The dataset contains the performance data of 12 different stocks in the green energy sector of year 2017 and 2018. By using VBA code, the total daily volume, and the starting and closing price of each stock in the selected year will be summarized and output in a new sheet for the ease of the performance analysis.
 
 ## VBA Scripts
@@ -15,7 +15,30 @@ There are 3 main parts of the code:
 2) **Analysis part: run an analysis through the stock data and output the results**
 3) Format the summary table and data for the ease of reading
 
-This project will focus on the analysis approach method (part 2) of the code, the difference between the code of refactored script and original script is shown in the following table;
+This project will focus on the analysis approach method (part 2) of the code.
+
+### The Analysis Part of the Code: Methods
+There are 12 stocks to be analyzed, of which the names are stored in the tickers array
+
+```
+    Dim tickers(11) As String
+    
+    tickers(0) = "AY"
+    tickers(1) = "CSIQ"
+    tickers(2) = "DQ"
+    tickers(3) = "ENPH"
+    tickers(4) = "FSLR"
+    tickers(5) = "HASI"
+    tickers(6) = "JKS"
+    tickers(7) = "RUN"
+    tickers(8) = "SEDG"
+    tickers(9) = "SPWR"
+    tickers(10) = "TERP"
+    tickers(11) = "VSLR"
+```
+
+#### Refactored Script vs Original Script
+The difference between the code of refactored script and original script is shown in the following table;
 
 | Refactored Code | Original Code |
 |------------- |-------------| 
