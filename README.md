@@ -17,14 +17,18 @@ There are 3 main parts of the code:
 
 This project will focus on the analysis approach method (part 2) of the code, the difference between the code of refactored script and original script is shown in the following table;
 
-| Refactored Code  | Original Code  |
+| Refactored Code | Original Code |
 |------------- |-------------| 
 | Loop through the data in 1 time | Use nested for loops (loop within loop) | 
-| * Store data in an array. <br/> * Output the array in separate loop from the analysis loop. <br/> (the output array stores the value while looping over the data.) <br/> | * Output the collected data inside the same loop as the analysis. <br/> * The data collected each time is output at the end after the code finishs running through the inner loop, before moving on to the next element of outer loop, initializing the variable so that it is ready to store another data, and repeat the same step
+| Output the array in separate loop from the analysis loop. | Output the collected data inside the same loop as the analysis. |
+| The output array stores the value while looping over the data. | The value is output at the end after the code finishes running through the inner loop, before moving on to the next element of outer loop. <br/> In the outer loop, the variable is initialized each time to store another data, and the smae process repeats
 | `Dim tickerStartingPrices(12) As Single`<br/> `Dim tickerEndingPrices(12) As Single`<br/> `Dim tickerVolumes(12) As Long`<br/> |`Dim startingPrice As Double` <br/> `Dim endingPrice As Double` <br/> `totalVolume = 0`|
 
 #### Outline of Original VBA Code inside the loop
-The following shows the outline of how the original code works, in the part of running through the data. The full version of the code is in the macro yearValueAnalysis() in the VBA_Challenge.xlsm 
+The following shows the outline of how the original code works in the analysis part of the data. The full version of the code is in the macro `yearValueAnalysis()` in `VBA_Challenge.xlsm`
+
+The code uses **nested for loops** in order to run through all the rows and collect the data in the column of each row, output the data of that ticker, and repeat the same process of the next tickers. Loop j (to run through rows) is inside Loop i (to run through tickers).
+
 ```
     For i = 0 To 11
         ticker = tickers(i)
@@ -35,9 +39,13 @@ The following shows the outline of how the original code works, in the part of r
         
         For j = 2 To RowCount
 
-            If 
-              'Conditions to collect totalVolume, startingPrice, EndingPrice
+            If Cells(j, 1).Value = ticker Then
+            
+                totalVolume = totalVolume + Cells(j, 8).Value
+                
             End If
+            
+            'If statements to find starting price and ending price of ticker(i)
                    
         Next j
         
@@ -49,40 +57,47 @@ The following shows the outline of how the original code works, in the part of r
 
     Next i
 ```
-The code uses nested For loops in order to run through all the rows and collect the data in the column of each row, output the data of that ticker, and repeat the same process of the next tickers. Loop j (to run through rows) is inside Loop i(to run through tickers).
 
 #### Outline of Refactored VBA Code
-The refactored code use the array to store the total volume and the starting price and ending price of each tickers. By creating tickerIndex as a variable, and implement the If statment to collect data of that tickerIndex, then store them in their own arrays, before increacing tickerIndex if the condition of the current index does not meet. The analysis is process inside one for loop. And the output of the data is process in a separated for loop.
+The refactored code eliminates the nested for loop, and instead, uses the array to store the Total Volume, and the Starting Price and Ending Price of each ticker. By creating `tickerIndex` as a variable, `tickerIndex = 0` and implementing the If statments to collect data of that tickerIndex and store them in their own arrays, the analysis is able to proceed within one loop without having to repeat running through every row for the number of ticker as in the original script.
+```
+tickers(tickerIndex)
+tickerVolumes(tickerIndex)
+tickerStartingPrices(tickerIndex)
+tickerEndingPrices(tickerIndex)
+```
+If the conditions of the current index are no longer met, the tickerIndex increases, meaning it moves forward to collect the data of the next ticker. The analysis proceeds with the next tickerIndex inside one loop. And the output of the data is processed in a separated for loop.
 
-The following only shows the outline of the code to have the idea of how they works, the full script can be found in the macro AllStocksAnalysisRefactored() in the VBA_Challenge.xlsm file.
+The following only shows the outline of analysis part of the code to have the idea of how they works, the full script can be found in the macro `AllStocksAnalysisRefactored()` in the `VBA_Challenge.xlsm` file.
 
 ```
-tickerIndex = 0
-
-For i = 0 To 11
-        tickerVolumes(i) = 0
-Next i
+    For i = 0 To 11
+            tickerVolumes(i) = 0
+    Next i
         
     '2b) Loop over all the rows
     For i = 2 To RowCount
-    
+
         If Cells(i, 1).Value = tickers(tickerIndex) Then
         
-          'If statement to find the total volume of the current ticker by using the tickerIndex
+            tickerVolumes(tickerIndex) = tickerVolumes(tickerIndex) + Cells(i, 8).Value
    
         End If
 
-          'If statement to find starting price and ending price of current ticker using tickerIndex and store it in the array
-
-           'Increase the tickerIndex when the conditions of current ticker doesn't meet to move on to the next ticker
-            tickerIndex = tickerIndex + 1
+        'If statements to find starting price and ending price of tickers(tickerIndex) and store it in the array
+        ''Find tickerStartingPrice(tickerIndex) and tickerEndingPrice(tickerIndex)
+        
+        'Increase the tickerIndex when the conditions of current ticker doesn't meet to move on to the next ticker
+        tickerIndex = tickerIndex + 1
  
     Next i
-   ```
-   End of the loop that works through the dataset, analyzing and collecting the data. 
-   Then output the array storing values of all the 12 stocks in separate for loop.
-   ```
+```
+End of the loop that works through the dataset, analyzing and collecting the data. 
+
+Then the array storing values of all the 12 stocks is output in a separate loop.
+```
     '4) Loop through your arrays to output the Ticker, Total Daily Volume, and Return.
+    
     For i = 0 To 11
         
         Worksheets("All Stocks Analysis").Activate
