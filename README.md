@@ -1,15 +1,15 @@
 # Analysis of Stock Dataset
-## Overview of the Project
-### Purpose
+## 1.) Overview of the Project
+### 1.1) Purpose
 This project aims to refactor the original VBA script which is used in the analysis of the sample stock dataset, such that the code will be able to run an analysis over a large-scale dataset in a fast and efficient manner. As Steve plans to expand his research to the entire stock market, the refactored VBA code, which execute an analysis faster, will allow Steve to analyze the performance of the stocks without having to go through the dataset manually, and help his parents diversify their future investment wisely.
 
-### Background of Stock dataset
+### 1.2) Background of Stock dataset
 The dataset contains the performance data of 12 different stocks in the green energy sector of year 2017 and 2018. By using VBA code, the total daily volume, and the starting and closing price of each stock in the selected year will be summarized and output in a new sheet for the ease of the performance analysis.
 
-## VBA Scripts
+## 2.) VBA Scripts
 The original script and the refactored script shares the similar purpose of going through the stock data, finding the values as per code instruction, and return the output in the summary table. The only difference is the method of doing so. In order to compare the execution time between them, the timer function is put at the start and the end of each script in the same manner.
 
-### Breakdown the code
+### 2.1) Breakdown the code
 There are 3 main parts of the code:
 1) Format output sheet (assigning headers and tickers)
 2) **Analysis part: run an analysis through the stock data and output the results**
@@ -17,7 +17,7 @@ There are 3 main parts of the code:
 
 This project will focus on the analysis approach method (part 2) of the code.
 
-### The Analysis Part of the Code: Methods
+### 2.2) The Analysis Part of the Code: Methods
 There are 12 stocks to be analyzed, of which the names are stored in the tickers array
 
 ```
@@ -37,7 +37,7 @@ There are 12 stocks to be analyzed, of which the names are stored in the tickers
     tickers(11) = "VSLR"
 ```
 
-#### Refactored Script vs Original Script
+#### 2.2.1) Refactored Script vs Original Script
 The difference between the code of refactored script and original script is shown in the following table;
 
 | Refactored Code | Original Code |
@@ -47,7 +47,7 @@ The difference between the code of refactored script and original script is show
 | The output array stores the value while looping over the data. | The value is output at the end after the code finishes running through the inner loop, before moving on to the next element of outer loop. <br/> In the outer loop, the variable is initialized each time to store another data, and the smae process repeats
 | `Dim tickerStartingPrices(12) As Single`<br/> `Dim tickerEndingPrices(12) As Single`<br/> `Dim tickerVolumes(12) As Long`<br/> |`Dim startingPrice As Double` <br/> `Dim endingPrice As Double` <br/> `totalVolume = 0`|
 
-#### Outline of Original VBA Code inside the loop
+#### 2.2.2) Outline of Original VBA Code inside the loop
 The following shows the outline of how the original code works in the analysis part of the data. The full version of the code is in the macro `yearValueAnalysis()` in `VBA_Challenge.xlsm`
 
 The code uses **nested for loops** in order to run through all the rows and collect the data in the column of each row, output the data of that ticker, and repeat the same process of the next tickers. Loop j (to run through rows) is inside Loop i (to run through tickers).
@@ -81,7 +81,7 @@ The code uses **nested for loops** in order to run through all the rows and coll
     Next i
 ```
 
-#### Outline of Refactored VBA Code
+#### 2.2.3) Outline of Refactored VBA Code
 The refactored code eliminates the nested for loop, and instead, uses the array to store the Total Volume, and the Starting Price and Ending Price of each ticker. By creating `tickerIndex` as a variable, `tickerIndex = 0` and implementing the If statments to collect data of that tickerIndex and store them in their own arrays, the analysis is able to proceed within one loop without having to repeat running through every row for the number of ticker as in the original script.
 ```
 tickers(tickerIndex)
@@ -132,8 +132,8 @@ Then the array storing values of all the 12 stocks is output in a separate loop.
 ```
 
 
-## Results
-### Overview of 'All Stock Analysis Worksheet'
+## 3.) Results
+### 3.1) Overview of 'All Stock Analysis Worksheet'
 By creating the button with assigned macro, Steve will be able to analyze the selected year of stock dataset. The overview of how the worksheet look like is shown as below; 
 
 Notice that there are two buttons for the stock analysis macros; the refactored script is assigned to `Refactored All Stock Analysis` button, and the original is assigned to `Original_Analysis for all stocks` (from the module) button.
@@ -142,7 +142,7 @@ The other two buttons are there to clear the worksheet, and format the summary t
 
 ![Excel_Display](https://github.com/asama-w/stock-analysis/blob/main/Additional%20Images/Excel_Sheet_Display.png)
 
-### Output of All Stock Analysis with Refactored VBA Script 
+### 3.2) Output of All Stock Analysis with Refactored VBA Script 
 After running the refactored code, the output shows summary table of the stock performance as below;
 
 The refactored script gives the same output as of the original script.
@@ -150,35 +150,48 @@ The refactored script gives the same output as of the original script.
 ![output 2017](https://github.com/asama-w/stock-analysis/blob/main/Additional%20Images/Output_Refactored_2017.png)
 ![output 2018](https://github.com/asama-w/stock-analysis/blob/main/Additional%20Images/Output_Refactored_2018.png)
 
-#### Performance Analysis
+#### 3.2.1) Performance Analysis
 + **2017:** 11 out of 12 stocks performed well over the year 2017 with the gain in the return, except for stock "TERP" that shows a loss. The "DQ" stock, in which Steve's parents has invested in, received the highest gain of 199.4% over the year.
-+ **2018:** This is not so good of a year for most of the stock investments, as majority of the stocks encountered a significant loss from year 2017, especially the "DQ" stock which has gone from +199% return (gain) at the end of 2017 to -62.6% return (loss) at the end of 2018. Only the stock "RUN" was able to gain a considerable jump in return from +5.5% in 2017 to +84.0% in 2018, also the trading volume is also high and increased from the year 2017, meaning there is a high liquidity of the stock. Despite still suffering a loss in return, the stock "TERP" which has - 7.2% loss in 2017, was able to manage slightly less loss to 5% in 2018.
++ **2018:** This is not so good of a year for most of the stock investments, as majority of the stocks encountered a significant loss from year 2017, especially the "DQ" stock which has gone from +199% return (gain) at the end of 2017 to -62.6% return (loss) at the end of 2018. Only the stock "RUN" was able to gain a considerable jump in return from +5.5% in 2017 to +84.0% in 2018, its trading volume is also high and has increased from the year 2017, meaning there is a high liquidity of the stock. Despite still suffering a loss in return, the stock "TERP" which has -7.2% loss in 2017, was able to manage slightly less loss to -5% in 2018.
 + **Conclusion:** With this information, the "DQ" stock may no longer be a suitable choice for the investment, especially for the short-term investment. Steve may needs to research more information of the company, and find the reasons or factors behind the significant loss of the stock return, which may include the business condition was not doing well, there was a change in the company board, or the economic suffered a sudden decline from the global situations that had negative impact on the stock market etc. 
 
 From this analysis, the stock "RUN" is an interesting choice of investment if Steve's parents still want to invest in the green energy sector as the data shows the raise in return and total volume, however, this is only one of the preliminary analysis to see the trend of the return and total trading volume over two years. Additional research and analysis should be done before deciding that this is the suitable stock for Steve's parent to invest.
 
-### Execution Time of The Scripts
+### 3.3) Execution Time of The Scripts
 
-#### Refactor VBA Script 
+#### 3.3.1) Refactor VBA Script 
 The following shows the excecution time when using refactored VBA script;
 ![Refactored_time 2017](https://github.com/asama-w/stock-analysis/blob/main/Resources/VBA_Challenge_2017.png)
 ![Refactored_time 2018](https://github.com/asama-w/stock-analysis/blob/main/Resources/VBA_Challenge_2018.png)
 
-#### Original VBA Script
+#### 3.3.2) Original VBA Script
 The following shows the excecution time when using original VBA script;
 ![Original_time 2017](https://github.com/asama-w/stock-analysis/blob/main/Additional%20Images/VBA_Module_Original_2017.png)
 ![Original_time 2017](https://github.com/asama-w/stock-analysis/blob/main/Additional%20Images/VBA_Module_Original_2018.png)
 
-#### Conclusion
-The refactored script aims to help the excel runs the execution faster. As a result, the execution time of the refactored code is 0.0703125 seconds for year 2017 and 0.078125 seconds for year 2018, which are almost 5 time faster than using the original script to run an analysis of the stocks.
+#### 3.3.3) Conclusion
+The refactored script aims to help the execution runs faster. As a result, the execution time of the refactored code is 0.0703125 seconds for year 2017 and 0.078125 seconds for year 2018, which are almost 5 time faster than using the original script to run an analysis of the stocks.
 
 |Year |Refactored Script|Original Script|
 |:----:|:----:|:----:|
+| | Faster| Slower|
 |2017|0.0703125 seconds|0.3046875 seconds|
 |2018|0.078125 seconds|0.328125 seconds|
 
+The Refactored VBA Script is able to run faster as it does not need to go through nested loops, repeating the same action of running through each row over and over again for each ticker, which has save the processing time. The difference may not seems significant here in this project as it differs in millisecond, since the dataset contains information of only 12 stocks. However, this refactor code will benefit Steve in the future when he wants to run an analysis over a large dataset of all stocks in the market.
 
-## Summary
-### Advantages or Disadvantages of Refactoring Code
+## 4.) Summary
+### 4.1) Advantages or Disadvantages of Refactoring Code (In Gerneral)
+**Advantages:
++ Run faster, good for large dataset
++ The code is organized, not cluster, easier to read
++ Easier to debug when the error occurs as it is organized
+**Disadvantages:
++ Require understanding and knowledge of the functionality of the code and commands in order to group the code effectively
 
-### How do these pros and cons apply to refactoring the original VBA script
+### 4.2) Advantages or Disadvantages of refactoring the Original VBA Script
+**Advantages:
++ The analysis runs faster than the original code
++ The code can be used to analyze a larger dataset that contains more stocks, with some editing on the array index
+**Disadvantages:
++ The code only works for the data in which the same stock name are grouped together. It needs another refactor to fit the data that are not alphabetically sorted togeter.
