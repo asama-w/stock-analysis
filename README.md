@@ -1,8 +1,11 @@
 # Analysis of Stock Dataset
-## Overview of Project
+## Overview of the Project
 ### Purpose
+a
+### Stock data
 
 ## Refactoring Code
+### How
 ### Examples of code
 
 ## Results
