@@ -133,14 +133,51 @@ Then the array storing values of all the 12 stocks is output in a separate loop.
 
 
 ## Results
-### Output Summary Table
-After running the refactored code, the output summary table of the stock is displayed in another sheet as below;
-![Excel_Display](to be put)
-![output 2017](to be put)
-![output 2018](to be put)
-![output 2017](to be put)
-![time 2017](to be put)
-![time 2018](to be put)
+### Overview of 'All Stock Analysis Worksheet'
+By creating the button with assigned macro, Steve will be able to analyze the selected year of stock dataset. The overview of how the worksheet look like is shown as below; 
+
+Notice that there are two buttons for the stock analysis macros; the refactored script is assigned to `Refactored All Stock Analysis` button, and the original is assigned to `Original_Analysis for all stocks` (from the module) button.
+
+The other two buttons are there to clear the worksheet, and format the summary table that is created from the original script (refactored script already includes table formatting).
+
+![Excel_Display](https://github.com/asama-w/stock-analysis/blob/main/Additional%20Images/Excel_Sheet_Display.png)
+
+### Output of All Stock Analysis with Refactored VBA Script 
+After running the refactored code, the output shows summary table of the stock performance as below;
+
+The refactored script gives the same output as of the original script.
+
+![output 2017](https://github.com/asama-w/stock-analysis/blob/main/Additional%20Images/Output_Refactored_2017.png)
+![output 2018](https://github.com/asama-w/stock-analysis/blob/main/Additional%20Images/Output_Refactored_2018.png)
+
+#### Performance Analysis
++ **2017:** 11 out of 12 stocks performed well over the year 2017 with the gain in the return, except for stock "TERP" that shows a loss. The "DQ" stock, in which Steve's parents has invested in, received the highest gain of 199.4% over the year.
++ **2018:** This is not so good of a year for most of the stock investments, as majority of the stocks encountered a significant loss from year 2017, especially the "DQ" stock which has gone from +199% return (gain) at the end of 2017 to -62.6% return (loss) at the end of 2018. Only the stock "RUN" was able to gain a considerable jump in return from +5.5% in 2017 to +84.0% in 2018, also the trading volume is also high and increased from the year 2017, meaning there is a high liquidity of the stock. Despite still suffering a loss in return, the stock "TERP" which has - 7.2% loss in 2017, was able to manage slightly less loss to 5% in 2018.
++ **Conclusion:** With this information, the "DQ" stock may no longer be a suitable choice for the investment, especially for the short-term investment. Steve may needs to research more information of the company, and find the reasons or factors behind the significant loss of the stock return, which may include the business condition was not doing well, there was a change in the company board, or the economic suffered a sudden decline from the global situations that had negative impact on the stock market etc. 
+
+From this analysis, the stock "RUN" is an interesting choice of investment if Steve's parents still want to invest in the green energy sector as the data shows the raise in return and total volume, however, this is only one of the preliminary analysis to see the trend of the return and total trading volume over two years. Additional research and analysis should be done before deciding that this is the suitable stock for Steve's parent to invest.
+
+### Execution Time of The Scripts
+
+#### Refactor VBA Script 
+The following shows the excecution time when using refactored VBA script;
+![Refactored_time 2017](https://github.com/asama-w/stock-analysis/blob/main/Resources/VBA_Challenge_2017.png)
+![Refactored_time 2018](https://github.com/asama-w/stock-analysis/blob/main/Resources/VBA_Challenge_2018.png)
+
+#### Original VBA Script
+The following shows the excecution time when using original VBA script;
+![Original_time 2017](https://github.com/asama-w/stock-analysis/blob/main/Additional%20Images/VBA_Module_Original_2017.png)
+![Original_time 2017](https://github.com/asama-w/stock-analysis/blob/main/Additional%20Images/VBA_Module_Original_2018.png)
+
+#### Conclusion
+The refactored script aims to help the excel runs the execution faster. As a result, the execution time of the refactored code is 0.0703125 seconds for year 2017 and 0.078125 seconds for year 2018, which are almost 5 time faster than using the original script to run an analysis of the stocks.
+
+|Year |Refactored Script|Original Script|
+|:----:|:----:|:----:|
+|2017|0.0703125 seconds|0.3046875 seconds|
+|2018|0.078125 seconds|0.328125 seconds|
+
+
 ## Summary
 ### Advantages or Disadvantages of Refactoring Code
 
