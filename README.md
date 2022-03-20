@@ -153,19 +153,19 @@ The refactored script gives the same output as of the original script.
 #### 3.2.1) Performance Analysis
 + **2017:** 11 out of 12 stocks performed well over the year 2017 with the gain in the return, except for stock "TERP" that shows a loss. The "DQ" stock, in which Steve's parents has invested in, received the highest gain of 199.4% over the year.
 + **2018:** This is not so good of a year for most of the stock investments, as majority of the stocks encountered a significant loss from year 2017, especially the "DQ" stock which has gone from +199% return (gain) at the end of 2017 to -62.6% return (loss) at the end of 2018. Only the stock "RUN" was able to gain a considerable jump in return from +5.5% in 2017 to +84.0% in 2018, its trading volume is also high and has increased from the year 2017, meaning there is a high liquidity of the stock. Despite still suffering a loss in return, the stock "TERP" which has -7.2% loss in 2017, was able to manage slightly less loss to -5% in 2018.
-+ **Conclusion:** With this information, the "DQ" stock may no longer be a suitable choice for the investment, especially for the short-term investment. Steve may needs to research more information of the company, and find the reasons or factors behind the significant loss of the stock return, which may include the business condition was not doing well, there was a change in the company board, or the economic suffered a sudden decline from the global situations that had negative impact on the stock market etc. 
++ **Conclusion:** With this information, the "**DQ**" stock may no longer be a suitable choice for the investment, especially for the short-term investment. Steve may needs to research more information of the company, and find the reasons or factors behind the significant loss of the stock return, which may include the business condition was not doing well, there was a change in the company board, or the economic suffered a sudden decline from the global situations that had negative impact on the stock market etc. 
 
-From this analysis, the stock "RUN" is an interesting choice of investment if Steve's parents still want to invest in the green energy sector as the data shows the raise in return and total volume, however, this is only one of the preliminary analysis to see the trend of the return and total trading volume over two years. Additional research and analysis should be done before deciding that this is the suitable stock for Steve's parent to invest.
+From this analysis, the stock "**RUN**" is an interesting choice of investment if Steve's parents still want to invest in the green energy sector as the data shows the raise in return and total volume, however, this is only one of the preliminary analysis to see the trend of the return and total trading volume over two years. Additional research and analysis should be done before deciding that this is the suitable stock for Steve's parent to invest.
 
 ### 3.3) Execution Time of The Scripts
 
 #### 3.3.1) Refactor VBA Script 
-The following shows the excecution time when using refactored VBA script;
+The following shows the excecution time when using **refactored VBA script**;
 ![Refactored_time 2017](https://github.com/asama-w/stock-analysis/blob/main/Resources/VBA_Challenge_2017.png)
 ![Refactored_time 2018](https://github.com/asama-w/stock-analysis/blob/main/Resources/VBA_Challenge_2018.png)
 
 #### 3.3.2) Original VBA Script
-The following shows the excecution time when using original VBA script;
+The following shows the excecution time when using **original VBA script**;
 ![Original_time 2017](https://github.com/asama-w/stock-analysis/blob/main/Additional%20Images/VBA_Module_Original_2017.png)
 ![Original_time 2017](https://github.com/asama-w/stock-analysis/blob/main/Additional%20Images/VBA_Module_Original_2018.png)
 
@@ -178,20 +178,22 @@ The refactored script aims to help the execution runs faster. As a result, the e
 |2017|0.0703125 seconds|0.3046875 seconds|
 |2018|0.078125 seconds|0.328125 seconds|
 
-The Refactored VBA Script is able to run faster as it does not need to go through nested loops, repeating the same action of running through each row over and over again for each ticker, which has save the processing time. The difference may not seems significant here in this project as it differs in millisecond, since the dataset contains information of only 12 stocks. However, this refactor code will benefit Steve in the future when he wants to run an analysis over a large dataset of all stocks in the market.
+The Refactored VBA Script is able to run faster as it does not need to go through nested loops, repeating the same action each time it moves to the next ticker, which has saved the processing time. The difference may not seems significant here in this project as it differs in millisecond, since the dataset contains information of only 12 stocks. However, this refactor code will benefit Steve in the future when he wants to run an analysis over a large dataset of all stocks in the market.
 
 ## 4.) Summary
 ### 4.1) Advantages or Disadvantages of Refactoring Code (In Gerneral)
 **Advantages:
-+ Run faster, good for large dataset
-+ The code is organized, not cluster, easier to read
-+ Easier to debug when the error occurs as it is organized
++ Run faster, good for large dataset.
++ The code is organized, not cluster, easier to read.
++ Easier to debug when the error occurs as it is organized.
 **Disadvantages:
-+ Require understanding and knowledge of the functionality of the code and commands in order to group the code effectively
++ Require understanding and knowledge of the functionality of the code and commands in order to group the code effectively.
 
 ### 4.2) Advantages or Disadvantages of refactoring the Original VBA Script
 **Advantages:
-+ The analysis runs faster than the original code
-+ The code can be used to analyze a larger dataset that contains more stocks, with some editing on the array index
++ The analysis runs faster than the original code.
++ Using the array to store the volume, starting and ending price. If the data size changed, the code still works as the array can adapt to the size, store the value and print out the data in the array.
++ The code can be used to analyze a larger dataset that contains more stocks, with some editing on the array index.
 **Disadvantages:
-+ The code only works for the data in which the same stock name are grouped together. It needs another refactor to fit the data that are not alphabetically sorted togeter.
++ The code only works for the data in which the same stock name are grouped together. It needs another refactor to fit the disorder data that are not yet sorted. 
++ The code does not work if the input year is neither 2017 or 2018.
