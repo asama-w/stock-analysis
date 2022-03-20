@@ -44,7 +44,7 @@ The difference between the code of refactored script and original script is show
 |------------- |-------------| 
 | Loop through the data in 1 time | Use nested for loops (loop within loop) | 
 | Output the array in separate loop from the analysis loop. | Output the collected data inside the same loop as the analysis. |
-| The output array stores the value while looping over the data. | The value is output at the end after the code finishes running through the inner loop, before moving on to the next element of outer loop. <br/> In the outer loop, the variable is initialized each time to store another data, and the smae process repeats
+| The output array stores the value while looping over the data. | The value is output at the end after the code finishes running through the inner loop, before moving on to the next element of outer loop. <br/> In the outer loop, the variable is initialized each time to store another data, and the same process repeats.
 | `Dim tickerStartingPrices(12) As Single`<br/> `Dim tickerEndingPrices(12) As Single`<br/> `Dim tickerVolumes(12) As Long`<br/> |`Dim startingPrice As Double` <br/> `Dim endingPrice As Double` <br/> `totalVolume = 0`|
 
 #### 2.2.2) Outline of Original VBA Code inside the loop
@@ -182,18 +182,20 @@ The Refactored VBA Script is able to run faster as it does not need to go throug
 
 ## 4.) Summary
 ### 4.1) Advantages or Disadvantages of Refactoring Code (In Gerneral)
-**Advantages:
+**Advantages:**
 + Run faster, good for large dataset.
 + The code is organized, not cluster, easier to read.
 + Easier to debug when the error occurs as it is organized.
-**Disadvantages:
+
+**Disadvantages:**
 + Require understanding and knowledge of the functionality of the code and commands in order to group the code effectively.
 
-### 4.2) Advantages or Disadvantages of refactoring the Original VBA Script
-**Advantages:
+### 4.2) Advantages or Disadvantages of Refactoring the Original VBA Script
+**Advantages:**
 + The analysis runs faster than the original code.
 + Using the array to store the volume, starting and ending price. If the data size changed, the code still works as the array can adapt to the size, store the value and print out the data in the array.
 + The code can be used to analyze a larger dataset that contains more stocks, with some editing on the array index.
-**Disadvantages:
+
+**Disadvantages:**
 + The code only works for the data in which the same stock name are grouped together. It needs another refactor to fit the disorder data that are not yet sorted. 
 + The code does not work if the input year is neither 2017 or 2018.
