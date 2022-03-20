@@ -133,8 +133,14 @@ Then the array storing values of all the 12 stocks is output in a separate loop.
 
 
 ## Results
-### Refactored Script vs Original Script
-
+### Output Summary Table
+After running the refactored code, the output summary table of the stock is displayed in another sheet as below;
+![Excel_Display](to be put)
+![output 2017](to be put)
+![output 2018](to be put)
+![output 2017](to be put)
+![time 2017](to be put)
+![time 2018](to be put)
 ## Summary
 ### Advantages or Disadvantages of Refactoring Code
 
